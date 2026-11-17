@@ -1,59 +1,72 @@
 import { Children, forwardRef } from "react";
-import { Text as RNText, type TextProps as RNTextProps, type Text as RNTextType } from "react-native";
+import {
+  Text as RNText,
+  type TextProps as RNTextProps,
+  type Text as RNTextType,
+} from "react-native";
 import { useDirection } from "panelui-native";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const textVariants = tv({
-	base: "text-foreground",
-	variants: {
-		size: {
-			xs: "text-xs",
-			sm: "text-sm",
-			base: "text-base",
-			lg: "text-lg",
-			xl: "text-xl",
-			"2xl": "text-2xl",
-			"3xl": "text-3xl",
-		},
-		weight: {
-			normal: "font-normal",
-			medium: "font-medium",
-			semibold: "font-semibold",
-			bold: "font-bold",
-			extrabold: "font-extrabold",
-		},
-		muted: {
-			true: "text-muted-foreground",
-		},
-	},
-	defaultVariants: {
-		size: "base",
-		weight: "normal",
-	},
+  base: "text-foreground",
+  variants: {
+    size: {
+      xs: "text-xs",
+      sm: "text-sm",
+      base: "text-base",
+      lg: "text-lg",
+      xl: "text-xl",
+      "2xl": "text-2xl",
+      "3xl": "text-3xl",
+    },
+    weight: {
+      normal: "font-normal",
+      medium: "font-medium",
+      semibold: "font-semibold",
+      bold: "font-bold",
+      extrabold: "font-extrabold",
+    },
+    muted: {
+      true: "text-muted-foreground",
+    },
+  },
+  defaultVariants: {
+    size: "base",
+    weight: "normal",
+  },
 });
 
 export type TextProps = RNTextProps &
-	VariantProps<typeof textVariants> & {
-		className?: string;
-	};
+  VariantProps<typeof textVariants> & {
+    className?: string;
+  };
 
-export const Text = forwardRef<RNTextType, TextProps>(({ className, size, weight, muted, style, ...props }, ref) => {
-	/*
-	 * `direction` is a Yoga *layout* property, and React Native resolves a
-	 * paragraph's own alignment from the process-wide `I18nManager.isRTL`
-	 * instead — so a `<Direction dir="rtl">` mirrors the furniture around this
-	 * text and leaves the text itself left-aligned inside it. Setting
-	 * `writingDirection` is what closes that gap, and it also puts bidi
-	 * punctuation on the correct end of a mixed line.
-	 *
-	 * Only the direction, not the alignment: `textAlign` stays whatever the
-	 * caller asked for, or unset. A component that centres its label means it
-	 * in both directions.
-	 */
-	const direction = useDirection();
+export const Text = forwardRef<RNTextType, TextProps>(
+  ({ className, size, weight, muted, style, ...props }, ref) => {
+    /*
+     * `direction` is a Yoga *layout* property, and React Native resolves a
+     * paragraph's own alignment from the process-wide `I18nManager.isRTL`
+     * instead — so a `<Direction dir="rtl">` mirrors the furniture around this
+     * text and leaves the text itself left-aligned inside it. Setting
+     * `writingDirection` is what closes that gap, and it also puts bidi
+     * punctuation on the correct end of a mixed line.
+     *
+     * Only the direction, not the alignment: `textAlign` stays whatever the
+     * caller asked for, or unset. A component that centres its label means it
+     * in both directions.
+     */
+    const direction = useDirection();
 
-	return <RNText ref={ref} className={textVariants({ size, weight, muted, className })} style={[{ writingDirection: direction }, style]} {...props} />;
-});
+    return (
+      <RNText
+        ref={ref}
+        className={textVariants({ size, weight, muted, className })}
+        style={[{ writingDirection: direction }, style]}
+        {...props}
+      />
+    );
+  },
+);
 Text.displayName = "Text";
 
 /**
@@ -75,8 +88,10 @@ Text.displayName = "Text";
  * the text arrives dressed the way the part would have dressed it anyway.
  */
 export function textChildren(
-	children: React.ReactNode,
-	render: (text: string | number) => React.ReactElement = (text) => <Text>{text}</Text>,
+  children: React.ReactNode,
+  render: (text: string | number) => React.ReactElement = (text) => <Text>{text}</Text>,
 ): React.ReactNode {
-	return Children.map(children, (child) => (typeof child === "string" || typeof child === "number" ? render(child) : child));
+  return Children.map(children, (child) =>
+    typeof child === "string" || typeof child === "number" ? render(child) : child,
+  );
 }

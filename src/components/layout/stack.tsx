@@ -3,39 +3,39 @@ import { Stack as ExpoStack, useRouter, type NativeStackNavigationOptions } from
 import { ChevronLeftIcon } from "lucide-react-native";
 
 export const globalStackOptions: NativeStackNavigationOptions = {
-	headerShadowVisible: false,
-	headerTransparent: Platform.OS === "ios",
-	headerStyle: { backgroundColor: Platform.OS === "ios" ? "transparent" : "black" },
+  headerShadowVisible: false,
+  headerTransparent: Platform.OS === "ios",
+  headerStyle: { backgroundColor: Platform.OS === "ios" ? "transparent" : "black" },
 
-	headerTitleAlign: "center",
-	headerTitleStyle: {
-		fontSize: 18,
-		color: "#fff",
-		fontFamily: "Outfit_600SemiBold",
-	},
+  headerTitleAlign: "center",
+  headerTitleStyle: {
+    fontSize: 18,
+    color: "#fff",
+    fontFamily: "Outfit_600SemiBold",
+  },
 
-	headerBackVisible: true,
-	headerBackButtonDisplayMode: "minimal",
+  headerBackVisible: true,
+  headerBackButtonDisplayMode: "minimal",
 };
 
 export function BackButton() {
-	const router = useRouter();
-	return (
-		<Pressable onPress={() => router.back()} hitSlop={8}>
-			<ChevronLeftIcon size={24} />
-		</Pressable>
-	);
+  const router = useRouter();
+  return (
+    <Pressable onPress={() => router.back()} hitSlop={8}>
+      <ChevronLeftIcon size={24} />
+    </Pressable>
+  );
 }
 
 export function StackRoot({ screenOptions, ...props }: React.ComponentProps<typeof ExpoStack>) {
-	return <ExpoStack screenOptions={{ ...globalStackOptions, ...screenOptions }} {...props} />;
+  return <ExpoStack screenOptions={{ ...globalStackOptions, ...screenOptions }} {...props} />;
 }
 
 export const Stack = Object.assign(StackRoot, {
-	Screen: ExpoStack.Screen,
-	Header: ExpoStack.Header,
-	Title: ExpoStack.Title,
-	SearchBar: ExpoStack.SearchBar,
-	Toolbar: ExpoStack.Toolbar,
-	Protected: ExpoStack.Protected,
+  Screen: ExpoStack.Screen,
+  Header: ExpoStack.Header,
+  Title: ExpoStack.Title,
+  SearchBar: ExpoStack.SearchBar,
+  Toolbar: ExpoStack.Toolbar,
+  Protected: ExpoStack.Protected,
 });

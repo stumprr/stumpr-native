@@ -1,48 +1,48 @@
 {
-	"expo": {
-		"name": "Stumpr",
-		"slug": "stumpr",
-		"scheme": "stumpr",
-		"owner": "stumpr",
-		"version": "1.0.0",
-		"platforms": ["ios", "android"],
-		"orientation": "portrait",
-		"userInterfaceStyle": "automatic",
-		"icon": "./assets/images/icon.png",
-		"ios": {
-			"icon": "./assets/expo.icon",
-			"bundleIdentifier": "com.alihamasdev.stumpr"
-		},
-		"android": {
-			"adaptiveIcon": {
-				"backgroundColor": "#BD0622",
-				"foregroundImage": "./assets/images/android-icon-foreground.png"
-			},
-			"predictiveBackGestureEnabled": false,
-			"package": "com.alihamasdev.stumpr"
-		},
-		"plugins": [
-			"expo-router",
-			"expo-font",
-			"expo-image",
-			[
-				"expo-splash-screen",
-				{
-					"backgroundColor": "#BD0622",
-					"image": "./assets/images/splash-icon.png",
-					"imageWidth": 128
-				}
-			]
-		],
-		"experiments": {
-			"typedRoutes": true,
-			"reactCompiler": true
-		},
-		"extra": {
-			"router": {},
-			"eas": {
-				"projectId": "35ae4bbe-1dc1-44eb-85d5-7d6d7abf5189"
-			}
-		}
-	}
+  "expo": {
+    "name": "Stumpr",
+    "slug": "stumpr",
+    "scheme": "stumpr",
+    "owner": "stumpr",
+    "version": "1.0.0",
+    "platforms": ["ios", "android"],
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/images/icon.png",
+    "ios": {
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.alihamasdev.stumpr"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#BD0622",
+        "foregroundImage": "./assets/images/android-icon-foreground.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.alihamasdev.stumpr"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-image",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#BD0622",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 128
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "35ae4bbe-1dc1-44eb-85d5-7d6d7abf5189"
+      }
+    }
+  }
 }

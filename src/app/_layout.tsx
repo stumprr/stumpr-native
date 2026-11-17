@@ -2,45 +2,51 @@ import "../global.css";
 
 import { ActivityIndicator, useColorScheme, View } from "react-native";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
-import { Outfit_400Regular, Outfit_500Medium, Outfit_600SemiBold, Outfit_700Bold, Outfit_800ExtraBold } from "@expo-google-fonts/outfit";
+import {
+  Outfit_400Regular,
+  Outfit_500Medium,
+  Outfit_600SemiBold,
+  Outfit_700Bold,
+  Outfit_800ExtraBold,
+} from "@expo-google-fonts/outfit";
 import { useFonts } from "expo-font";
 import { PanelUIProvider } from "panelui-native";
 
 import { Stack } from "@/components/layout/stack";
 
 export const unstable_settings = {
-	initialRouteName: "(tabs)",
+  initialRouteName: "(tabs)",
 };
 
 export function SuspenseFallback() {
-	return (
-		<View className="flex-1 items-center justify-center bg-background">
-			<ActivityIndicator size="large" />
-		</View>
-	);
+  return (
+    <View className="flex-1 items-center justify-center bg-background">
+      <ActivityIndicator size="large" />
+    </View>
+  );
 }
 
 export default function RootLayout() {
-	const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme();
 
-	const [loaded] = useFonts({
-		Outfit_400Regular,
-		Outfit_500Medium,
-		Outfit_600SemiBold,
-		Outfit_700Bold,
-		Outfit_800ExtraBold,
-	});
+  const [loaded] = useFonts({
+    Outfit_400Regular,
+    Outfit_500Medium,
+    Outfit_600SemiBold,
+    Outfit_700Bold,
+    Outfit_800ExtraBold,
+  });
 
-	if (!loaded) return null;
+  if (!loaded) return null;
 
-	return (
-		<PanelUIProvider>
-			<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-				<Stack>
-					<Stack.Screen name="(tabs)" options={{ headerShown: false, title: "Home" }} />
-					<Stack.Screen name="(stats)" options={{ headerShown: false, title: "Stats" }} />
-				</Stack>
-			</ThemeProvider>
-		</PanelUIProvider>
-	);
+  return (
+    <PanelUIProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false, title: "Home" }} />
+          <Stack.Screen name="(stats)" options={{ headerShown: false, title: "Stats" }} />
+        </Stack>
+      </ThemeProvider>
+    </PanelUIProvider>
+  );
 }

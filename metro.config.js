@@ -4,7 +4,7 @@ const { withUniwindConfig } = require("uniwind/metro");
 const config = getDefaultConfig(__dirname);
 
 module.exports = withUniwindConfig(config, {
-	cssEntryFile: "./src/global.css",
-	dtsFile: "./uniwind-types.d.ts",
-	extraThemes: ["moon", "moon-dark", "grass", "grass-dark"],
+  cssEntryFile: "./src/global.css",
+  dtsFile: "./uniwind-types.d.ts",
+  extraThemes: ["moon", "moon-dark", "grass", "grass-dark"],
 });
